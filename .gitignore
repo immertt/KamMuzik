@@ -1,0 +1,21 @@
+# Sanal ortam
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Ortam değişkenleri (gizli anahtarlar)
+.env
+
+# Medya (kullanıcı yüklemeleri - repoya girmez)
+media/
+
+# VSCode / işletim sistemi
+.vscode/
+.DS_Store
