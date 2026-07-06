@@ -68,12 +68,22 @@ class Production(models.Model):
     def __str__(self):
         return self.title
     
+    def get_type_label(self):
+        return "Çalışma"
+
 class Song(Production):
     spotify_url = models.URLField("Spotify linki", blank=True)
     apple_music_url = models.URLField("Apple Music linki", blank=True)
     youtube_url = models.URLField("YouTube linki", blank=True)
     duration = models.DurationField("Süre", blank=True, null=True)
 
+    def get_type_label(self):
+        return "Şarkı"
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("catalog:song_detail", kwargs={"slug": self.slug})
+    
     class Meta(Production.Meta):
         verbose_name = "Şarkı"
         verbose_name_plural = "Şarkılar"
@@ -83,6 +93,27 @@ class VideoClip(Production):
     youtube_url = models.URLField("YouTube linki", blank=True)
     director = models.CharField("Yönetmen", max_length=200, blank=True)
 
+    def get_type_label(self):
+        return "Klip"
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("catalog:clip_detail", kwargs={"slug": self.slug})
+    
+    @property
+    def embed_id(self):
+        """YouTube linkinden video kimliğini ayıklar (watch?v=XXX veya youtu.be/XXX)."""
+        if not self.youtube_url:
+            return ""
+        url = self.youtube_url
+        if "watch?v=" in url:
+            return url.split("watch?v=")[1].split("&")[0]
+        if "youtu.be/" in url:
+            return url.split("youtu.be/")[1].split("?")[0]
+        if "embed/" in url:
+            return url.split("embed/")[1].split("?")[0]
+        return ""
+    
     class Meta(Production.Meta):
         verbose_name = "Video Klip"
         verbose_name_plural = "Video Klipler"

@@ -1,0 +1,68 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ clip.title }} — Kam Müzik{% endblock %}
+{% block meta_description %}{{ clip.description|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+
+<section class="detail">
+    <div class="detail__glow"></div>
+    <div class="container detail__inner">
+
+        <div class="detail__media" data-aos="fade-right">
+            {% if clip.embed_id %}
+                <div class="detail__video">
+                    <iframe src="https://www.youtube.com/embed/{{ clip.embed_id }}"
+                            title="{{ clip.title }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            {% elif clip.cover_image %}
+                <img src="{{ clip.cover_image.url }}" alt="{{ clip.title }}" class="detail__cover">
+            {% else %}
+                <div class="detail__cover detail__cover--empty">KM</div>
+            {% endif %}
+        </div>
+
+        <div class="detail__info" data-aos="fade-left">
+            <span class="detail__type">Klip</span>
+            <h1 class="detail__title">{{ clip.title }}</h1>
+
+            {% if clip.category %}
+            <span class="detail__cat">{{ clip.category.name }}</span>
+            {% endif %}
+
+            {% if clip.director %}
+            <p class="detail__meta">Yönetmen: {{ clip.director }}</p>
+            {% endif %}
+
+            {% if clip.release_date %}
+            <p class="detail__meta">Yayın tarihi: {{ clip.release_date|date:"d F Y" }}</p>
+            {% endif %}
+
+            {% if clip.description %}
+            <p class="detail__desc">{{ clip.description|linebreaksbr }}</p>
+            {% endif %}
+
+            {% if clip.tags.all %}
+            <div class="detail__tags">
+                {% for tag in clip.tags.all %}
+                <span class="tag">{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="detail__links">
+                {% if clip.youtube_url %}
+                <a href="{{ clip.youtube_url }}" target="_blank" rel="noopener" class="btn btn--primary">YouTube'da İzle</a>
+                {% endif %}
+            </div>
+
+            <a href="{% url 'catalog:catalog_list' %}" class="detail__back">&larr; Tüm projelere dön</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

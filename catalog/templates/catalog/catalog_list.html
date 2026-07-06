@@ -1,0 +1,78 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Projelerimiz — Kam Müzik{% endblock %}
+
+{% block content %}
+
+<!-- Üst başlık şeridi -->
+<section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="container">
+        <h1 class="page-hero__title">Projelerimiz</h1>
+        <p class="page-hero__subtitle">Ürettiğimiz tüm şarkı ve klipler tek bir yerde.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <!-- Kategori filtre butonları -->
+        {% if categories %}
+        <div class="filter" data-aos="fade-up">
+            <button class="filter__btn is-active" data-filter="all">Tümü</button>
+            {% for category in categories %}
+            <button class="filter__btn" data-filter="{{ category.slug }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Proje grid'i -->
+        <div class="grid" id="projectGrid">
+            {% for item in productions %}
+            <a href="{{ item.get_absolute_url }}"
+               class="card" data-category="{{ item.category.slug|default:'none' }}"
+               data-aos="fade-up">
+                {% if item.cover_image %}
+                    <img src="{{ item.cover_image.url }}" alt="{{ item.title }}" class="card__img">
+                {% else %}
+                    <div class="card__placeholder">KM</div>
+                {% endif %}
+                <div class="card__overlay">
+                    <span class="card__type">{{ item.get_type_label }}</span>
+                    <span class="card__title">{{ item.title }}</span>
+                    {% if item.category %}<span class="card__cat">{{ item.category.name }}</span>{% endif %}
+                </div>
+            </a>
+            {% empty %}
+            <p style="grid-column:1/-1;text-align:center;color:var(--text-muted);">
+                Henüz proje eklenmedi.
+            </p>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.filter__btn');
+    const cards = document.querySelectorAll('#projectGrid .card');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            const filter = btn.dataset.filter;
+
+            cards.forEach(card => {
+                const match = (filter === 'all' || card.dataset.category === filter);
+                card.style.display = match ? '' : 'none';
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

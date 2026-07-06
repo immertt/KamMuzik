@@ -1,0 +1,63 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ song.title }} — Kam Müzik{% endblock %}
+{% block meta_description %}{{ song.description|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+
+<section class="detail">
+    <div class="detail__glow"></div>
+    <div class="container detail__inner">
+
+        <div class="detail__media" data-aos="fade-right">
+            {% if song.cover_image %}
+                <img src="{{ song.cover_image.url }}" alt="{{ song.title }}" class="detail__cover">
+            {% else %}
+                <div class="detail__cover detail__cover--empty">KM</div>
+            {% endif %}
+        </div>
+
+        <div class="detail__info" data-aos="fade-left">
+            <span class="detail__type">Şarkı</span>
+            <h1 class="detail__title">{{ song.title }}</h1>
+
+            {% if song.category %}
+            <span class="detail__cat">{{ song.category.name }}</span>
+            {% endif %}
+
+            {% if song.release_date %}
+            <p class="detail__meta">Yayın tarihi: {{ song.release_date|date:"d F Y" }}</p>
+            {% endif %}
+
+            {% if song.description %}
+            <p class="detail__desc">{{ song.description|linebreaksbr }}</p>
+            {% endif %}
+
+            {% if song.tags.all %}
+            <div class="detail__tags">
+                {% for tag in song.tags.all %}
+                <span class="tag">{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Dinleme platformları -->
+            <div class="detail__links">
+                {% if song.spotify_url %}
+                <a href="{{ song.spotify_url }}" target="_blank" rel="noopener" class="btn btn--primary">Spotify'da Dinle</a>
+                {% endif %}
+                {% if song.apple_music_url %}
+                <a href="{{ song.apple_music_url }}" target="_blank" rel="noopener" class="btn btn--outline">Apple Music</a>
+                {% endif %}
+                {% if song.youtube_url %}
+                <a href="{{ song.youtube_url }}" target="_blank" rel="noopener" class="btn btn--outline">YouTube</a>
+                {% endif %}
+            </div>
+
+            <a href="{% url 'catalog:catalog_list' %}" class="detail__back">&larr; Tüm projelere dön</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
