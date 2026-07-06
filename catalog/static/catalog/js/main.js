@@ -34,12 +34,42 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     }
 
-    /* ---------- GSAP: hero giriş animasyonu ---------- */
-    if (window.gsap) {
+    /* ---------- GSAP: hero giriş animasyonu (sadece anasayfada) ---------- */
+    if (window.gsap && document.querySelector('.hero__title')) {
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
         tl.from('.hero__title', { y: 40, opacity: 0, duration: 1 })
           .from('.hero__subtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
           .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4');
+    }
+
+    /* ---------- Yumuşak kaydırma (aynı sayfa + sayfalar arası) ---------- */
+    const navHeight = 76;
+
+    function smoothScrollTo(hash) {
+        const target = document.querySelector(hash);
+        if (!target) return;
+        const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+
+    // 1) Aynı sayfadaki çapa linkleri (#... veya /#... ama mevcut sayfada)
+    document.querySelectorAll('a[href*="#"]').forEach(link => {
+        link.addEventListener('click', function (e) {
+            const url = new URL(this.href, window.location.origin);
+            const samePage = (url.pathname === window.location.pathname);
+            if (samePage && url.hash && document.querySelector(url.hash)) {
+                e.preventDefault();
+                smoothScrollTo(url.hash);
+            }
+            // farklı sayfaysa: tarayıcı normal gitsin, aşağıdaki kod devralır
+        });
+    });
+
+    // 2) Başka sayfadan gelindiyse (adreste #hakkimizda gibi çapa varsa) o bölüme kay
+    if (window.location.hash) {
+        const hash = window.location.hash;
+        // sayfa ve görseller yerleşsin diye küçük gecikme
+        setTimeout(() => smoothScrollTo(hash), 300);
     }
 
 });

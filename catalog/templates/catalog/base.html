@@ -29,9 +29,9 @@
             </a>
             <nav class="navbar__nav" id="navMenu">
                 <a href="{% url 'catalog:home' %}" class="navbar__link">Ana Sayfa</a>
-                <a href="#hakkimizda" class="navbar__link">Hakkımızda</a>
+                <a href="{% url 'catalog:home' %}#hakkimizda" class="navbar__link">Hakkımızda</a>
                 <a href="{% url 'catalog:catalog_list' %}" class="navbar__link">Projeler</a>
-                <a href="#studyomuz" class="navbar__link">Stüdyomuz</a>
+                <a href="{% url 'catalog:home' %}#studyomuz" class="navbar__link">Stüdyomuz</a>
                 <a href="#iletisim" class="navbar__link">İletişim</a>
             </nav>
             <button class="navbar__toggle" id="navToggle" aria-label="Menüyü aç/kapat">

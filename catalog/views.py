@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from itertools import chain
 from .models import Song, VideoClip, Category, Tag
+from pages.models import SiteContent, StudioPhoto
 
 
 def home(request):
@@ -9,6 +10,8 @@ def home(request):
     context = {
         "songs": songs,
         "clips": clips,
+        "content": SiteContent.load(),
+        "studio_photos": StudioPhoto.objects.filter(is_visible=True),
     }
     return render(request, "catalog/home.html", context)
 
