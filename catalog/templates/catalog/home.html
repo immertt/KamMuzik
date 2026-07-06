@@ -1,0 +1,74 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Kam Müzik — Ses ve Yapım{% endblock %}
+
+{% block content %}
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <div class="hero__glow"></div>
+    <div class="hero__content">
+        <h1 class="hero__title">
+            Dünya Standartlarında<br>
+            <span class="accent">Ses ve Yapım</span>
+        </h1>
+        <p class="hero__subtitle">
+            Albüm &amp; single yapımı, klip çekimi ve dijital platform yayıncılığı.
+        </p>
+        <a href="{% url 'catalog:catalog_list' %}" class="btn btn--primary hero__cta">
+            Projelerimizi Keşfet
+        </a>
+    </div>
+</section>
+
+<!-- ===================== ÖNE ÇIKAN PROJELER ===================== -->
+<section class="section section--pale" id="projeler">
+    <div class="container">
+        <div class="section__head" data-aos="fade-up">
+            <span class="section__eyebrow">Portföyümüz</span>
+            <h2 class="section__title">Öne Çıkan Projelerimiz</h2>
+        </div>
+
+        <div class="grid">
+            {% for song in songs %}
+            <a href="{% url 'catalog:song_detail' song.slug %}" class="card"
+               data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:forloop.counter0 }}0">
+                {% if song.cover_image %}
+                    <img src="{{ song.cover_image.url }}" alt="{{ song.title }}" class="card__img">
+                {% else %}
+                    <div class="card__placeholder">KM</div>
+                {% endif %}
+                <div class="card__overlay">
+                    <span class="card__type">Şarkı</span>
+                    <span class="card__title">{{ song.title }}</span>
+                    {% if song.category %}<span class="card__cat">{{ song.category.name }}</span>{% endif %}
+                </div>
+            </a>
+            {% endfor %}
+
+            {% for clip in clips %}
+            <a href="{% url 'catalog:clip_detail' clip.slug %}" class="card"
+               data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:forloop.counter0 }}0">
+                {% if clip.cover_image %}
+                    <img src="{{ clip.cover_image.url }}" alt="{{ clip.title }}" class="card__img">
+                {% else %}
+                    <div class="card__placeholder">KM</div>
+                {% endif %}
+                <div class="card__overlay">
+                    <span class="card__type">Klip</span>
+                    <span class="card__title">{{ clip.title }}</span>
+                    {% if clip.category %}<span class="card__cat">{{ clip.category.name }}</span>{% endif %}
+                </div>
+            </a>
+            {% endfor %}
+
+            {% if not songs and not clips %}
+            <p style="grid-column:1/-1;text-align:center;color:var(--text-muted);">
+                Henüz proje eklenmedi. Admin panelinden ilk çalışmanı ekleyebilirsin.
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Kam Müzik{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Kam Müzik — Ses kayıt stüdyosu, albüm ve klip yapımı, dijital dağıtım hizmetleri.{% endblock %}">
+
+    <!-- Google Fonts: Montserrat (başlık) + Inter (gövde) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS: scroll reveal animasyonları -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'catalog/css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar__inner">
+            <a href="{% url 'catalog:home' %}" class="navbar__logo">
+                <span class="navbar__logo-mark">KM</span>
+                <span class="navbar__logo-text">MÜZİK</span>
+            </a>
+            <nav class="navbar__nav" id="navMenu">
+                <a href="{% url 'catalog:home' %}" class="navbar__link">Ana Sayfa</a>
+                <a href="#hakkimizda" class="navbar__link">Hakkımızda</a>
+                <a href="{% url 'catalog:catalog_list' %}" class="navbar__link">Projeler</a>
+                <a href="#studyomuz" class="navbar__link">Stüdyomuz</a>
+                <a href="#iletisim" class="navbar__link">İletişim</a>
+            </nav>
+            <button class="navbar__toggle" id="navToggle" aria-label="Menüyü aç/kapat">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===================== SAYFA İÇERİĞİ ===================== -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" id="iletisim">
+        <div class="container footer__inner">
+            <div class="footer__col footer__brand">
+                <span class="footer__logo">KM MÜZİK</span>
+                <p class="footer__tagline">Dünyaya ses veren stüdyomuz ve müzik şirketimiz.</p>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__heading">İletişim</h4>
+                <p>E-posta: info@kammuzik.com</p>
+                <p>Telefon: +90 555 123 45 67</p>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__heading">Bizi Takip Edin</h4>
+                <div class="footer__social">
+                    <a href="https://www.instagram.com/kammuzik/" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://www.youtube.com/kammuzikyapim" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://www.facebook.com/kammuzikfilmyapim" target="_blank" rel="noopener">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <p>&copy; {% now "Y" %} Kam Müzik. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="{% static 'catalog/js/main.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
