@@ -46,3 +46,24 @@ class StudioPhotoTest(TestCase):
     def test_str_uses_caption(self):
         photo = StudioPhoto.objects.create(caption="Kayıt Odası", order=1)
         self.assertEqual(str(photo), "Kayıt Odası")
+
+class WhatsAppNumberTest(TestCase):
+    """contact_phone'un çeşitli formatlardan doğru wa.me numarasına dönüşmesi."""
+
+    def _make(self, phone):
+        c = SiteContent.load()
+        c.contact_phone = phone
+        c.save()
+        return c.whatsapp_number
+
+    def test_turkish_with_leading_zero(self):
+        self.assertEqual(self._make("05321112233"), "905321112233")
+
+    def test_turkish_spaced_with_plus(self):
+        self.assertEqual(self._make("+90 532 111 22 33"), "905321112233")
+
+    def test_without_leading_zero(self):
+        self.assertEqual(self._make("5321112233"), "905321112233")
+
+    def test_already_international(self):
+        self.assertEqual(self._make("905321112233"), "905321112233")

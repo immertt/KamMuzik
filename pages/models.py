@@ -31,6 +31,13 @@ class SiteContent(models.Model):
     contact_email = models.EmailField("İletişim e-postası", default="info@kammuzik.com")
     contact_phone = models.CharField("Telefon", max_length=40, default="+90 555 123 45 67")
 
+    map_embed_url = models.URLField(
+        "Google Harita linki (embed src)",
+        max_length=1000,
+        blank=True,
+        help_text="Google Haritalar → Paylaş → Harita yerleştir → iframe içindeki src=\"...\" linkini yapıştır.",
+    )
+
     class Meta:
         verbose_name = "Site İçeriği"
         verbose_name_plural = "Site İçeriği"
@@ -49,6 +56,23 @@ class SiteContent(models.Model):
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj
 
+    @property
+    def whatsapp_number(self):
+        """contact_phone'dan wa.me formatını üretir.
+        Türkiye formatını uluslararası formata çevirir:
+        - Rakam dışındaki her şeyi temizler (+, boşluk, tire, parantez)
+        - Baştaki 0'ı atıp 90 ekler (05321112233 -> 905321112233)
+        - Zaten 90 ile başlıyorsa dokunmaz
+        """
+        import re
+        digits = re.sub(r"[^\d]", "", self.contact_phone or "")
+        if digits.startswith("90"):
+            return digits                    # zaten uluslararası: 905321112233
+        if digits.startswith("0"):
+            return "90" + digits[1:]         # 05321112233 -> 905321112233
+        if digits.startswith("5"):
+            return "90" + digits             # 5321112233 -> 905321112233
+        return digits                         # bilinmeyen format: olduğu gibi
 
 class StudioPhoto(models.Model):
     """Stüdyo galerisi fotoğrafları — admin istediği kadar ekler/sıralar."""

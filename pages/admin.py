@@ -12,7 +12,7 @@ class SiteContentAdmin(admin.ModelAdmin):
             "fields": ["studio_title", "studio_text"]
         }),
         ("İletişim Bilgileri", {
-            "fields": ["contact_email", "contact_phone"]
+            "fields": ["contact_email", "contact_phone", "map_embed_url"]
         }),
     ]
 

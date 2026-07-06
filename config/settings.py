@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #Kendi app'lerimiz
     'catalog',
     "pages",
+    "contact",
 ]
 
 MIDDLEWARE = [
