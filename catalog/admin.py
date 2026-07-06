@@ -21,6 +21,19 @@ class SongAdmin(admin.ModelAdmin):
     search_fields = ["title", "description"]
     filter_horizontal = ["tags"]
     date_hierarchy = "release_date"
+    prepopulated_fields = {"slug": ["title"]}
+
+    fieldsets = [
+        ("Temel Bilgiler", {
+            "fields": ["title", "slug", "description", "cover_image", "release_date"]
+        }),
+        ("Sınıflandırma", {
+            "fields": ["category", "tags", "is_published"]
+        }),
+        ("Müzik Bağlantıları", {
+            "fields": ["spotify_url", "apple_music_url", "youtube_url", "duration"]
+        }),
+    ]
 
 
 @admin.register(VideoClip)
@@ -30,3 +43,20 @@ class VideoClipAdmin(admin.ModelAdmin):
     search_fields = ["title", "description", "director"]
     filter_horizontal = ["tags"]
     date_hierarchy = "release_date"
+    prepopulated_fields = {"slug": ["title"]}
+
+    fieldsets = [
+        ("Temel Bilgiler", {
+            "fields": ["title", "slug", "description", "cover_image", "release_date"]
+        }),
+        ("Sınıflandırma", {
+            "fields": ["category", "tags", "is_published"]
+        }),
+        ("Klip Bilgileri", {
+            "fields": ["youtube_url", "director"]
+        }),
+    ]
+
+admin.site.site_header = "Kam Müzik Yönetim Paneli"
+admin.site.site_title = "Kam Müzik"
+admin.site.index_title = "İçerik Yönetimi"
