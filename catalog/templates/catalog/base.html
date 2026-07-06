@@ -32,8 +32,7 @@
                 <a href="{% url 'catalog:home' %}#hakkimizda" class="navbar__link">Hakkımızda</a>
                 <a href="{% url 'catalog:catalog_list' %}" class="navbar__link">Projeler</a>
                 <a href="{% url 'catalog:home' %}#studyomuz" class="navbar__link">Stüdyomuz</a>
-                <a href="#iletisim" class="navbar__link">İletişim</a>
-            </nav>
+                <a href="{% url 'contact:contact' %}" class="navbar__link">İletişim</a>            </nav>
             <button class="navbar__toggle" id="navToggle" aria-label="Menüyü aç/kapat">
                 <span></span><span></span><span></span>
             </button>
@@ -46,7 +45,7 @@
     </main>
 
     <!-- ===================== FOOTER ===================== -->
-    <footer class="footer" id="iletisim">
+    <footer class="footer">
         <div class="container footer__inner">
             <div class="footer__col footer__brand">
                 <span class="footer__logo">KM MÜZİK</span>

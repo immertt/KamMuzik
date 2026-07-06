@@ -1,0 +1,90 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}İletişim — Kam Müzik{% endblock %}
+
+{% block content %}
+
+<!-- Üst başlık -->
+<section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="container">
+        <h1 class="page-hero__title">İletişim</h1>
+        <p class="page-hero__subtitle">Bize ulaşın, en kısa sürede size dönelim.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-wrap">
+
+        <!-- Sol: Form -->
+        <div class="contact-form-col" data-aos="fade-right">
+
+            <!-- Django mesaj bildirimleri (başarı / hata) -->
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert--{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" action="{% url 'contact:contact' %}" class="form" novalidate>
+                {% csrf_token %}
+
+                <div class="form__group">
+                    <label for="{{ form.name.id_for_label }}" class="form__label">Ad Soyad</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}<span class="form__error">{{ form.name.errors.0 }}</span>{% endif %}
+                </div>
+
+                <div class="form__group">
+                    <label for="{{ form.email.id_for_label }}" class="form__label">E-posta</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}<span class="form__error">{{ form.email.errors.0 }}</span>{% endif %}
+                </div>
+
+                <div class="form__group">
+                    <label for="{{ form.subject.id_for_label }}" class="form__label">Konu</label>
+                    {{ form.subject }}
+                    {% if form.subject.errors %}<span class="form__error">{{ form.subject.errors.0 }}</span>{% endif %}
+                </div>
+
+                <div class="form__group">
+                    <label for="{{ form.message.id_for_label }}" class="form__label">Mesaj</label>
+                    {{ form.message }}
+                    {% if form.message.errors %}<span class="form__error">{{ form.message.errors.0 }}</span>{% endif %}
+                </div>
+
+                <button type="submit" class="btn btn--primary">Mesajı Gönder</button>
+            </form>
+        </div>
+
+        <!-- Sağ: Alternatif iletişim kanalları -->
+        <div class="contact-info-col" data-aos="fade-left">
+            <h3 class="contact-info__heading">Doğrudan Ulaşın</h3>
+            <p class="contact-info__text">
+                Hızlı yanıt için WhatsApp veya e-posta üzerinden de bize ulaşabilirsiniz.
+            </p>
+
+            <div class="contact-info__item">
+                <span class="contact-info__label">E-posta</span>
+                <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>
+            </div>
+
+            <div class="contact-info__item">
+                <span class="contact-info__label">Telefon</span>
+                <span>{{ site.contact_phone }}</span>
+            </div>
+
+            {% if site.whatsapp_number %}
+            <a href="https://wa.me/{{ site.whatsapp_number }}?text=Merhaba,%20Kam%20Müzik%20ile%20iletişime%20geçmek%20istiyorum."
+               class="btn btn--whatsapp" target="_blank" rel="noopener">
+                WhatsApp'tan Yaz
+            </a>
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
