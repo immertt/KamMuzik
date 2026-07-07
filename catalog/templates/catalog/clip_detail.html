@@ -19,7 +19,8 @@
                             allowfullscreen></iframe>
                 </div>
             {% elif clip.cover_image %}
-                <img src="{{ clip.cover_image.url }}" alt="{{ clip.title }}" class="detail__cover">
+                <img src="{{ clip.cover_image.url }}" alt="{{ clip.title }}"
+                     class="detail__cover lightbox-trigger" data-caption="{{ clip.title }}">
             {% else %}
                 <div class="detail__cover detail__cover--empty">KM</div>
             {% endif %}

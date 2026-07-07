@@ -102,6 +102,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- ===================== LIGHTBOX ===================== -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Kapat">&times;</button>
+        <img class="lightbox__img" id="lightboxImg" src="" alt="">
+        <div class="lightbox__caption" id="lightboxCaption"></div>
+    </div>
     
     <!-- ===================== WHATSAPP YÜZEN BUTON ===================== -->
     {% if site.whatsapp_number %}

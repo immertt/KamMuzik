@@ -88,5 +88,42 @@ document.addEventListener('DOMContentLoaded', function () {
         // sayfa ve görseller yerleşsin diye küçük gecikme
         setTimeout(() => smoothScrollTo(hash), 300);
     }
+    
+    /* ---------- Lightbox (görsel büyütme) ---------- */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    if (lightbox) {
+        // .lightbox-trigger sınıflı tüm görseller tıklanabilir
+        document.querySelectorAll('.lightbox-trigger').forEach(img => {
+            img.addEventListener('click', () => {
+                const src = img.dataset.full || img.src;
+                lightboxImg.src = src;
+                lightboxImg.alt = img.alt || '';
+                lightboxCaption.textContent = img.dataset.caption || img.alt || '';
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';  // arka plan kaymasın
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        // boş alana tıklayınca kapansın (görselin kendisine değil)
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        // ESC tuşu ile kapansın
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+        });
+    }
 
 });

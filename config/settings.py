@@ -205,7 +205,6 @@ JAZZMIN_SETTINGS = {
 
     "login_logo": None,
     "site_logo_classes": "img-circle",
-    "custom_css": "catalog/css/admin_custom.css",
 }
 
 JAZZMIN_UI_TWEAKS = {

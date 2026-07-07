@@ -120,7 +120,8 @@
         <div class="studio-grid">
             {% for photo in studio_photos %}
             <div class="studio-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:forloop.counter0 }}0">
-                <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'Stüdyo' }}" class="studio-card__img">
+                <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'Stüdyo' }}"
+                     class="studio-card__img lightbox-trigger" data-caption="{{ photo.caption }}">
                 {% if photo.caption %}
                 <div class="studio-card__caption">{{ photo.caption }}</div>
                 {% endif %}

@@ -11,7 +11,8 @@
 
         <div class="detail__media" data-aos="fade-right">
             {% if song.cover_image %}
-                <img src="{{ song.cover_image.url }}" alt="{{ song.title }}" class="detail__cover">
+                <img src="{{ song.cover_image.url }}" alt="{{ song.title }}"
+                     class="detail__cover lightbox-trigger" data-caption="{{ song.title }}">
             {% else %}
                 <div class="detail__cover detail__cover--empty">KM</div>
             {% endif %}

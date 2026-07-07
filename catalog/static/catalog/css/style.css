@@ -644,6 +644,10 @@ a { text-decoration: none; color: inherit; }
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     cursor: pointer;
 }
+/* Stüdyo kartında tıklama görsele ulaşsın */
+.studio-card::after { pointer-events: none; }
+.studio-card__caption { pointer-events: none; }
+
 .studio-card__img {
     width: 100%; height: 100%;
     object-fit: cover;
@@ -994,3 +998,60 @@ textarea.form__input { resize: vertical; min-height: 120px; }
     justify-content: center;
     flex-wrap: wrap;
 }
+
+/* ============================================================
+   LIGHTBOX (görsel büyütme)
+   ============================================================ */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(5, 14, 26, 0.92);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s var(--ease), visibility 0.35s var(--ease);
+    cursor: zoom-out;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox__img {
+    max-width: 90vw;
+    max-height: 82vh;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(93,169,240,0.3), 0 30px 80px rgba(0,0,0,0.7);
+    transform: scale(0.92);
+    transition: transform 0.35s var(--ease);
+    cursor: default;
+}
+.lightbox.open .lightbox__img { transform: scale(1); }
+.lightbox__caption {
+    color: var(--text-light);
+    margin-top: 18px;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 600px;
+}
+.lightbox__close {
+    position: absolute;
+    top: 24px; right: 30px;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(93,169,240,0.3);
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+}
+.lightbox__close:hover {
+    background: rgba(46,139,230,0.3);
+    transform: rotate(90deg);
+}
+/* Tıklanabilir görsellere ipucu */
+.lightbox-trigger { cursor: zoom-in; }
