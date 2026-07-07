@@ -102,3 +102,68 @@ a.btn-info:hover {
 /* Başlık linkleri */
 .dashboard .card a { color: #8FC0F0; }
 .dashboard .card a:hover { color: #fff; }
+
+/* ---------- Admin login ekranı markalama ---------- */
+.login-page, body.login {
+    background: linear-gradient(160deg, #0A1A2F 0%, #0F2745 100%) !important;
+}
+.login-box .card, .login-card-body {
+    background: rgba(15,39,69,0.6) !important;
+    border: 1px solid rgba(93,169,240,0.2) !important;
+    border-radius: 14px !important;
+    backdrop-filter: blur(10px);
+}
+.login-box .card-header {
+    background: transparent !important;
+    border: none !important;
+}
+.login-logo a, .login-box .card-header {
+    color: #fff !important;
+    font-weight: 700;
+}
+/* Giriş butonu marka mavisi */
+.login-box .btn-primary {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+/* Giriş alanları */
+.login-box .form-control {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(93,169,240,0.25) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+}
+
+/* ---------- Kam Müzik marka rengi ince ayarı ---------- */
+/* Üst bar ve kenar çubuğu marka lacivertine */
+.main-header.navbar {
+    background: linear-gradient(90deg, #0A1A2F, #0F2745) !important;
+    border-bottom: 1px solid rgba(93,169,240,0.15) !important;
+}
+.main-sidebar, .sidebar-dark-primary {
+    background: #0A1A2F !important;
+}
+/* Sidebar marka logosu alanı */
+.brand-link {
+    background: #0A1A2F !important;
+    border-bottom: 1px solid rgba(93,169,240,0.15) !important;
+}
+/* Aktif menü öğesi marka mavisi */
+.nav-sidebar .nav-item > .nav-link.active,
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    background: linear-gradient(135deg, #2E8BE6, #1F6FBF) !important;
+    box-shadow: 0 3px 12px rgba(46,139,230,0.35);
+}
+/* Menü hover */
+.nav-sidebar .nav-link:hover {
+    background: rgba(46,139,230,0.12) !important;
+}
+/* Linkler ve vurgular */
+a, .breadcrumb-item a { color: #5DA9F0; }
+a:hover { color: #8FC0F0; }
+/* Birincil butonlar (Kaydet vb. hariç, genel) */
+.btn-primary {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border: none !important;
+}

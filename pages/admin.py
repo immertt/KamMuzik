@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import SiteContent, StudioPhoto
+from django.utils.html import format_html
 
 
 @admin.register(SiteContent)
@@ -30,6 +31,15 @@ class SiteContentAdmin(admin.ModelAdmin):
 
 @admin.register(StudioPhoto)
 class StudioPhotoAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "order", "is_visible"]
+    list_display = ["onizleme", "__str__", "order", "is_visible"]
     list_editable = ["order", "is_visible"]
     list_filter = ["is_visible"]
+
+    def onizleme(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="width:60px;height:45px;object-fit:cover;border-radius:6px;" />',
+                obj.image.url
+            )
+        return format_html('<span style="opacity:0.4;">—</span>')
+    onizleme.short_description = "Önizleme"

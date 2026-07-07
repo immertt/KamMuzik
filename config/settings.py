@@ -164,7 +164,7 @@ JAZZMIN_SETTINGS = {
 
     # Kullanıcıya gösterilmeyecek (kafa karıştıran) uygulamalar/modeller
     "hide_apps": [],
-    "hide_models": ["auth.Group"],
+    "hide_models": ["auth.Group", "auth.User"],
 
     # Sol menü sırası — mantıklı bir akış
     "order_with_respect_to": [
@@ -202,6 +202,10 @@ JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
     "show_sidebar": True,
     "navigation_expanded": True,
+
+    "login_logo": None,
+    "site_logo_classes": "img-circle",
+    "custom_css": "catalog/css/admin_custom.css",
 }
 
 JAZZMIN_UI_TWEAKS = {
