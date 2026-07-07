@@ -4,6 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from catalog.sitemaps import StaticViewSitemap, SongSitemap, VideoClipSitemap
+from django.contrib.auth import views as auth_views
+
 
 sitemaps = {
     "static": StaticViewSitemap,
@@ -24,6 +26,20 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
 urlpatterns = [
+    path("admin/password_reset/", auth_views.PasswordResetView.as_view(
+        template_name="admin/password_reset.html",
+        email_template_name="admin/password_reset_email.html",
+        subject_template_name="admin/password_reset_subject.txt",
+    ), name="admin_password_reset"),
+    path("admin/password_reset/done/", auth_views.PasswordResetDoneView.as_view(
+        template_name="admin/password_reset_done.html",
+    ), name="password_reset_done"),
+    path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(
+        template_name="admin/password_reset_confirm.html",
+    ), name="password_reset_confirm"),
+    path("reset/done/", auth_views.PasswordResetCompleteView.as_view(
+        template_name="admin/password_reset_complete.html",
+    ), name="password_reset_complete"),
     path("admin/", admin.site.urls),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
     path("robots.txt", robots_txt, name="robots_txt"),    

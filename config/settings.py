@@ -205,6 +205,10 @@ JAZZMIN_SETTINGS = {
 
     "login_logo": None,
     "site_logo_classes": "img-circle",
+
+    "usermenu_links": [
+        {"name": "Parolamı Değiştir", "url": "admin:password_change", "icon": "fas fa-key"},
+    ],
 }
 
 JAZZMIN_UI_TWEAKS = {
@@ -217,3 +221,7 @@ JAZZMIN_UI_TWEAKS = {
     "navbar_fixed": True,
     "sidebar_fixed": True,
 }
+
+# Giriş/parola işlemleri sonrası yönlendirme
+LOGIN_REDIRECT_URL = "/admin/"
+LOGIN_URL = "/admin/login/"
