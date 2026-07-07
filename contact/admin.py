@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import ContactMessage
-
+from django.contrib.auth.models import User, Group
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
@@ -12,3 +12,6 @@ class ContactMessageAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False  # mesajlar sadece formdan gelir, admin elle ekleyemez
+    
+admin.site.unregister(User)
+admin.site.unregister(Group)
