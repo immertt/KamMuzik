@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
           .from('.hero__subtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
           .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4');
     }
-    
+
     /* ---------- Hero parallax (arka plan yavaş kayar) ---------- */
     if (window.gsap && window.ScrollTrigger && document.querySelector('.hero')) {
         gsap.registerPlugin(ScrollTrigger);

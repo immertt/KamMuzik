@@ -31,12 +31,15 @@
 /* ---------- Sıfırlama ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
-
+html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--nav-h);
+        background: var(--navy-deep);
+    }
 body {
     font-family: var(--font-body);
     color: var(--text-dark);
-    background: var(--white);
+    background: var(--navy-deep);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -1055,3 +1058,25 @@ textarea.form__input { resize: vertical; min-height: 120px; }
 }
 /* Tıklanabilir görsellere ipucu */
 .lightbox-trigger { cursor: zoom-in; }
+
+/* ============================================================
+   SAYFA GEÇİŞ ANİMASYONLARI
+   ============================================================ */
+/* Sayfa açılışında ana içerik yumuşak belirir */
+main {
+    animation: page-enter 0.6s var(--ease) both;
+}
+@keyframes page-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Sayfadan çıkarken (link tıklanınca) soluvma */
+body.page-leaving {
+    opacity: 0.15;
+    transform: translateY(-8px);
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+body {
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
