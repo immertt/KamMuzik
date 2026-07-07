@@ -41,6 +41,23 @@ document.addEventListener('DOMContentLoaded', function () {
           .from('.hero__subtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
           .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4');
     }
+    
+    /* ---------- Hero parçacıkları oluştur ---------- */
+    const particleContainer = document.getElementById('heroParticles');
+    if (particleContainer) {
+        const count = 26;
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('span');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (6 + Math.random() * 8) + 's';   // 6-14s arası
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            const size = 2 + Math.random() * 3;                          // 2-5px
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            particleContainer.appendChild(p);
+        }
+    }
 
     /* ---------- Yumuşak kaydırma (aynı sayfa + sayfalar arası) ---------- */
     const navHeight = 76;

@@ -5,8 +5,18 @@
 {% block content %}
 
 <!-- ===================== HERO ===================== -->
-<section class="hero">
+<section class="hero{% if content.hero_image %} hero--has-image{% endif %}"
+         {% if content.hero_image %}
+        style="background-image: radial-gradient(ellipse at center, rgba(10,26,47,0.55) 0%, rgba(10,26,47,0.78) 100%), linear-gradient(160deg, rgba(10,26,47,0.35), rgba(15,39,69,0.45)), url('{{ content.hero_image.url }}');"
+         {% endif %}>
     <div class="hero__glow"></div>
+    <div class="hero__glow"></div>
+
+    <!-- Hareketli ışık katmanları -->
+    <div class="hero__particles" id="heroParticles"></div>
+    <div class="hero__lines">
+        <span></span><span></span><span></span>
+    </div>
     <div class="hero__content">
         <h1 class="hero__title">
             Dünya Standartlarında<br>

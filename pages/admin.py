@@ -14,6 +14,9 @@ class SiteContentAdmin(admin.ModelAdmin):
         ("İletişim Bilgileri", {
             "fields": ["contact_email", "contact_phone", "map_embed_url"]
         }),
+        ("Görsel Ayarları", {
+            "fields": ["hero_image"]
+        }),
     ]
 
     def has_add_permission(self, request):

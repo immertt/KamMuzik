@@ -37,6 +37,13 @@ class SiteContent(models.Model):
         blank=True,
         help_text="Google Haritalar → Paylaş → Harita yerleştir → iframe içindeki src=\"...\" linkini yapıştır.",
     )
+    hero_image = models.ImageField(
+        "Hero arka plan görseli",
+        upload_to="hero/",
+        blank=True,
+        null=True,
+        help_text="Anasayfa üst bölümünün arka planı. Yatay, koyu tonlu bir stüdyo fotoğrafı ideal.",
+    )
 
     class Meta:
         verbose_name = "Site İçeriği"
