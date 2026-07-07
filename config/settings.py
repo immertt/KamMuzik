@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,3 +147,65 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+JAZZMIN_SETTINGS = {
+    # Başlıklar
+    "site_title": "Kam Müzik Yönetim",
+    "site_header": "Kam Müzik",
+    "site_brand": "Kam Müzik",
+    "welcome_sign": "Kam Müzik Yönetim Paneline Hoş Geldiniz",
+    "copyright": "Kam Müzik",
+
+    # Üst menüyü sadeleştir (arkadaşın için gereksiz linkleri kaldır)
+    "topmenu_links": [
+        {"name": "Siteyi Görüntüle", "url": "/", "new_window": True},
+    ],
+
+    # Kullanıcıya gösterilmeyecek (kafa karıştıran) uygulamalar/modeller
+    "hide_apps": [],
+    "hide_models": ["auth.Group"],
+
+    # Sol menü sırası — mantıklı bir akış
+    "order_with_respect_to": [
+        "catalog",
+        "catalog.Song",
+        "catalog.VideoClip",
+        "catalog.Category",
+        "catalog.Tag",
+        "pages",
+        "contact",
+        "auth",
+    ],
+
+    # Her modele anlamlı ikon (Font Awesome)
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "catalog.Song": "fas fa-music",
+        "catalog.VideoClip": "fas fa-video",
+        "catalog.Category": "fas fa-folder",
+        "catalog.Tag": "fas fa-tag",
+        "pages.SiteContent": "fas fa-sliders-h",
+        "pages.StudioPhoto": "fas fa-images",
+        "contact.ContactMessage": "fas fa-envelope",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    # Görünüm
+    "related_modal_active": True,   # ilişkili kayıtları pencerede aç (sayfa değiştirmeden)
+    "custom_css": None,
+    "show_ui_builder": False,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "default",
+    "dark_mode_theme": None,
+    "navbar": "navbar-dark",
+    "sidebar": "sidebar-dark-primary",
+    "brand_colour": "navbar-primary",
+    "accent": "accent-primary",
+    "navbar_fixed": True,
+    "sidebar_fixed": True,
+}
