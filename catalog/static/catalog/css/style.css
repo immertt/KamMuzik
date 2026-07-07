@@ -877,7 +877,7 @@ textarea.form__input { resize: vertical; min-height: 120px; }
 /* ---------- Hero arka plan görseli (varsa) ---------- */
 .hero--has-image {
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
 }
 

@@ -42,6 +42,41 @@ document.addEventListener('DOMContentLoaded', function () {
           .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4');
     }
     
+    /* ---------- Hero parallax (arka plan yavaş kayar) ---------- */
+    if (window.gsap && window.ScrollTrigger && document.querySelector('.hero')) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const hero = document.querySelector('.hero');
+
+        // Arka plan görseli sayfa kaydıkça yavaşça aşağı kaysın (derinlik)
+        gsap.to(hero, {
+            backgroundPositionY: "30%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: hero,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+            }
+        });
+
+        // Hero içeriği (yazılar) kaydıkça hafif yukarı çıkıp solsun
+        const heroContent = document.querySelector('.hero__content');
+        if (heroContent) {
+            gsap.to(heroContent, {
+                y: -80,
+                opacity: 0.3,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: hero,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                }
+            });
+        }
+    }
+    
     /* ---------- Hero parçacıkları oluştur ---------- */
     const particleContainer = document.getElementById('heroParticles');
     if (particleContainer) {
@@ -88,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // sayfa ve görseller yerleşsin diye küçük gecikme
         setTimeout(() => smoothScrollTo(hash), 300);
     }
-    
+
     /* ---------- Lightbox (görsel büyütme) ---------- */
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
