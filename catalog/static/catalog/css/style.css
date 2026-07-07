@@ -833,3 +833,39 @@ textarea.form__input { resize: vertical; min-height: 120px; }
 @media (max-width: 820px) {
     .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
 }
+
+/* ---------- Sayfalama ---------- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+.pagination__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(46,139,230,0.25);
+    background: transparent;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s var(--ease);
+}
+.pagination__btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-2px);
+}
+.pagination__btn.is-active {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue));
+    color: var(--white);
+    border-color: transparent;
+    box-shadow: 0 6px 18px rgba(46,139,230,0.35);
+}

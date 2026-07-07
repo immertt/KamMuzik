@@ -86,6 +86,12 @@
             </p>
             {% endif %}
         </div>
+
+        {% if songs or clips %}
+        <div style="text-align:center;margin-top:50px;" data-aos="fade-up">
+            <a href="{% url 'catalog:catalog_list' %}" class="btn btn--primary">Tüm Projeleri Gör</a>
+        </div>
+        {% endif %}
     </div>
 </section>
 

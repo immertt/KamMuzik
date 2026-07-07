@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from itertools import chain
 from .models import Song, VideoClip, Category, Tag
 from pages.models import SiteContent, StudioPhoto
+from django.core.paginator import Paginator
 
 
 def home(request):
@@ -19,17 +20,23 @@ def home(request):
 def catalog_list(request):
     songs = Song.objects.filter(is_published=True)
     clips = VideoClip.objects.filter(is_published=True)
-    productions = sorted(
+    all_productions = sorted(
         chain(songs, clips),
         key=lambda p: p.release_date or p.created_at.date(),
         reverse=True,
     )
+
+    # Sayfalama: her sayfada 12 çalışma
+    paginator = Paginator(all_productions, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "productions": productions,
+        "productions": page_obj,       # şablon bunun üzerinden döner
+        "page_obj": page_obj,          # sayfalama kontrolleri için
         "categories": Category.objects.all(),
     }
     return render(request, "catalog/catalog_list.html", context)
-
 
 def song_detail(request, slug):
     song = get_object_or_404(Song, slug=slug, is_published=True)
