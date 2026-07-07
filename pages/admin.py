@@ -14,8 +14,8 @@ class SiteContentAdmin(admin.ModelAdmin):
         ("İletişim Bilgileri", {
             "fields": ["contact_email", "contact_phone", "map_embed_url"]
         }),
-        ("Görsel Ayarları", {
-            "fields": ["hero_image"]
+        ("Panel Ayarları", {
+            "fields": ["hero_image", "show_recent_actions"]
         }),
     ]
 

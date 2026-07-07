@@ -73,6 +73,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "pages.context_processors.site_content",
+                "pages.context_processors.admin_stats",
             ],
         },
     },
@@ -195,8 +196,12 @@ JAZZMIN_SETTINGS = {
 
     # Görünüm
     "related_modal_active": True,   # ilişkili kayıtları pencerede aç (sayfa değiştirmeden)
-    "custom_css": None,
+    "custom_css": "catalog/css/admin_custom.css",
     "show_ui_builder": False,
+    "recent_actions_limit": 50,
+    "changeform_format": "horizontal_tabs",
+    "show_sidebar": True,
+    "navigation_expanded": True,
 }
 
 JAZZMIN_UI_TWEAKS = {

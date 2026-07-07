@@ -1,0 +1,104 @@
+/* ============================================================
+   KAM MÜZİK — Admin Panel Özelleştirmeleri (Jazzmin)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) "Son eylemler" panelini SAĞDAN ALIP ALTA TAŞI
+   Jazzmin dashboard'u bir satır (row) içinde iki sütundan oluşur:
+   sol (app kartları) ve sağ (son eylemler). Bunları alt alta diziyoruz.
+   ------------------------------------------------------------ */
+.dashboard > .row,
+.content .row:first-child {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Sol taraf (app kartları) tam genişlik */
+.dashboard .col-md-6:first-child,
+.content .row > .col-12.col-sm-6.col-md-6.col-lg-6:first-child,
+#content-main > .row > div:first-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 1;
+}
+
+/* Sağ taraf (Son eylemler) alta insin, tam genişlik */
+.dashboard .col-md-6:last-child,
+#recent-actions-module {
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 2;
+}
+
+/* Son eylemler listesini yatay, derli toplu kutuya çevir */
+#recent-actions-module {
+    margin-top: 20px;
+    border-top: 2px solid rgba(46,139,230,0.25);
+    padding-top: 20px;
+}
+#recent-actions-module .timeline {
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* ------------------------------------------------------------
+   2) EKLE / DEĞİŞTİR butonlarını yumuşat (cırtlak renkleri kır)
+   ------------------------------------------------------------ */
+.dashboard .btn-success,
+a.btn-success {
+    background-color: #2E8BE6 !important;   /* marka mavisi */
+    border-color: #2E8BE6 !important;
+    color: #fff !important;
+    font-weight: 500;
+    border-radius: 8px !important;
+    opacity: 0.92;
+    transition: all 0.25s ease;
+}
+.dashboard .btn-success:hover,
+a.btn-success:hover {
+    background-color: #1F6FBF !important;
+    opacity: 1;
+}
+
+.dashboard .btn-info,
+a.btn-info {
+    background-color: transparent !important;
+    border: 1.5px solid rgba(93,169,240,0.5) !important;
+    color: #8FC0F0 !important;
+    font-weight: 500;
+    border-radius: 8px !important;
+    transition: all 0.25s ease;
+}
+.dashboard .btn-info:hover,
+a.btn-info:hover {
+    background-color: rgba(46,139,230,0.15) !important;
+    color: #fff !important;
+}
+
+/* ------------------------------------------------------------
+   3) Kartları biraz yumuşat (köşe, kenarlık, gölge)
+   ------------------------------------------------------------ */
+.dashboard .card {
+    border-radius: 12px !important;
+    border: 1px solid rgba(93,169,240,0.12) !important;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.25) !important;
+}
+.dashboard .card-header {
+    border-bottom: 1px solid rgba(93,169,240,0.12) !important;
+    font-weight: 600;
+}
+
+/* Kart içi satırlara nefes */
+.dashboard .table td { padding: 12px 14px !important; }
+
+/* ------------------------------------------------------------
+   4) Genel ince dokunuşlar
+   ------------------------------------------------------------ */
+/* Sol menü aktif öğe — marka mavisi vurgu */
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active {
+    background-color: rgba(46,139,230,0.85) !important;
+}
+/* Başlık linkleri */
+.dashboard .card a { color: #8FC0F0; }
+.dashboard .card a:hover { color: #fff; }

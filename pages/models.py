@@ -44,6 +44,11 @@ class SiteContent(models.Model):
         null=True,
         help_text="Anasayfa üst bölümünün arka planı. Yatay, koyu tonlu bir stüdyo fotoğrafı ideal.",
     )
+    show_recent_actions = models.BooleanField(
+        "Panelde 'Son Eylemler'i göster",
+        default=True,
+        help_text="Kapatılırsa yönetim panosunda son işlemler listesi gizlenir.",
+    )
 
     class Meta:
         verbose_name = "Site İçeriği"
