@@ -1,0 +1,19 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Bir Hata Oluştu — Kam Müzik{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="error-page__glow"></div>
+    <div class="container error-page__inner">
+        <span class="error-page__code">500</span>
+        <h1 class="error-page__title">Bir Şeyler Ters Gitti</h1>
+        <p class="error-page__text">
+            Beklenmedik bir hata oluştu. Lütfen birazdan tekrar deneyin.
+        </p>
+        <div class="error-page__actions">
+            <a href="{% url 'catalog:home' %}" class="btn btn--primary">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

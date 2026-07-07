@@ -7,6 +7,27 @@
     <title>{% block title %}Kam Müzik{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}Kam Müzik — Ses kayıt stüdyosu, albüm ve klip yapımı, dijital dağıtım hizmetleri.{% endblock %}">
 
+    <!-- Open Graph (sosyal medya önizlemesi) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kam Müzik">
+    <meta property="og:title" content="{% block og_title %}Kam Müzik — Ses ve Yapım{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Ses kayıt stüdyosu, albüm ve klip yapımı, dijital dağıtım hizmetleri.{% endblock %}">
+    <meta property="og:locale" content="tr_TR">
+    {% block og_image %}
+    {% if site.hero_image %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ site.hero_image.url }}">
+    {% endif %}
+    {% endblock %}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Kam Müzik{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Ses kayıt stüdyosu, albüm ve klip yapımı, dijital dağıtım.{% endblock %}">
+
+    <!-- Diğer SEO meta -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Kam Müzik">
+
     <!-- Google Fonts: Montserrat (başlık) + Inter (gövde) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,0 +1,20 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Sayfa Bulunamadı — Kam Müzik{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="error-page__glow"></div>
+    <div class="container error-page__inner">
+        <span class="error-page__code">404</span>
+        <h1 class="error-page__title">Sayfa Bulunamadı</h1>
+        <p class="error-page__text">
+            Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir.
+        </p>
+        <div class="error-page__actions">
+            <a href="{% url 'catalog:home' %}" class="btn btn--primary">Ana Sayfaya Dön</a>
+            <a href="{% url 'catalog:catalog_list' %}" class="btn btn--outline">Projelere Göz At</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
