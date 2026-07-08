@@ -586,7 +586,11 @@ a { text-decoration: none; color: inherit; }
     gap: 60px;
     align-items: center;
 }
-.about__title { text-align: left; margin-bottom: 22px; }
+.about__title {
+    color: var(--white);
+    text-align: left;
+    margin-bottom: 22px;
+}
 .about__body {
     color: var(--text-muted);
     font-size: 1.05rem;

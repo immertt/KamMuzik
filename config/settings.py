@@ -209,6 +209,8 @@ JAZZMIN_SETTINGS = {
     "usermenu_links": [
         {"name": "Parolamı Değiştir", "url": "admin:password_change", "icon": "fas fa-key"},
     ],
+    
+    "actions_sticky_top": True,
 }
 
 JAZZMIN_UI_TWEAKS = {

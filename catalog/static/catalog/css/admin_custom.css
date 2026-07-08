@@ -173,3 +173,219 @@ a:hover { color: #8FC0F0; }
     pointer-events: none;
     cursor: default;
 }
+
+/* ============================================================
+   ADMIN LİSTE EKRANI GÜZELLEŞTİRME
+   ============================================================ */
+
+/* Arama çubuğu alanı */
+#changelist-search {
+    background: rgba(15,39,69,0.35) !important;
+    border: 1px solid rgba(93,169,240,0.15) !important;
+    border-radius: 12px !important;
+    padding: 18px 20px !important;
+    margin-bottom: 20px !important;
+}
+#changelist-search input[type="text"] {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(93,169,240,0.3) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    padding: 11px 16px !important;
+    min-width: 320px !important;
+}
+#changelist-search input[type="text"]:focus {
+    outline: none !important;
+    border-color: #2E8BE6 !important;
+    box-shadow: 0 0 0 3px rgba(46,139,230,0.15) !important;
+}
+#changelist-search input[type="submit"] {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 11px 24px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+/* Filtre paneli (sağ taraf) */
+#changelist-filter {
+    background: rgba(15,39,69,0.35) !important;
+    border: 1px solid rgba(93,169,240,0.15) !important;
+    border-radius: 12px !important;
+}
+#changelist-filter h2 {
+    background: transparent !important;
+    color: #8FC0F0 !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(93,169,240,0.15) !important;
+}
+#changelist-filter a { color: #c5d6e8 !important; }
+#changelist-filter li.selected a { color: #2E8BE6 !important; font-weight: 600; }
+
+/* Sonuç tablosu */
+#result_list {
+    background: rgba(15,39,69,0.25) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    border: 1px solid rgba(93,169,240,0.12) !important;
+}
+#result_list thead th {
+    background: rgba(46,139,230,0.12) !important;
+    border-bottom: 1px solid rgba(93,169,240,0.2) !important;
+    padding: 14px 12px !important;
+}
+#result_list thead th a { color: #cfe2f5 !important; font-weight: 600; }
+#result_list tbody tr {
+    transition: background 0.2s ease;
+}
+#result_list tbody tr:hover { background: rgba(46,139,230,0.08) !important; }
+#result_list tbody td { padding: 12px !important; border-color: rgba(93,169,240,0.08) !important; }
+#result_list tbody a { color: #8FC0F0 !important; }
+#result_list tbody a:hover { color: #fff !important; }
+
+/* Eylem (actions) menüsü */
+.actions {
+    background: rgba(15,39,69,0.35) !important;
+    border: 1px solid rgba(93,169,240,0.15) !important;
+    border-radius: 12px !important;
+    padding: 14px 18px !important;
+    margin-bottom: 16px !important;
+}
+.actions select {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(93,169,240,0.3) !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    padding: 8px 12px !important;
+}
+.actions button {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px 20px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+}
+
+/* "Ekle" butonu (sağ üst) */
+.object-tools a.addlink {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border-radius: 10px !important;
+    padding: 11px 22px !important;
+    font-weight: 600 !important;
+}
+
+/* Alt bilgi çubuğu (X şarkı / Kaydet) */
+.paginator {
+    background: transparent !important;
+    color: #c5d6e8 !important;
+    padding-top: 16px !important;
+}
+/* Sütun başlıklarındaki sıralama-temizle (x) işaretlerini gizle */
+#result_list thead th .text a.sortremove,
+#result_list thead th a.sortremove,
+.sortoptions .sortremove {
+    display: none !important;
+}
+/* Eylem menüsü — daha şık ve belirgin */
+.actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap;
+}
+.actions label { color: #cfe2f5 !important; font-weight: 500; margin: 0 !important; }
+.actions select {
+    min-width: 240px !important;
+    font-size: 0.95rem !important;
+}
+.actions .button {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border-radius: 8px !important;
+    padding: 9px 22px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+/* "X / Y seçildi" bilgisi */
+.actions .action-counter,
+.actions .all,
+.actions .question { color: #8FC0F0 !important; }
+
+/* Sıralama işaretlerini (ok/x) sadeleştir */
+#result_list thead th .sortoptions {
+    display: none !important;
+}
+#result_list thead th a.sortremove,
+#result_list thead th a.toggle {
+    display: none !important;
+}
+/* Alternatif: tüm sıralama ikonlarını gizle */
+#result_list thead th .text > a img,
+#result_list thead th img {
+    display: none !important;
+}
+
+/* Liste alt "Kaydet" butonu (list_editable) — mavi yap */
+.submit-row input[name="_save"],
+#changelist-form button[type="submit"],
+#changelist-form input[type="submit"] {
+    background: linear-gradient(135deg, #5DA9F0, #2E8BE6) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    padding: 8px 22px !important;
+}
+/* Sütun başlıklarındaki sıralama × ve ok ikonlarını gizle */
+#result_list thead th .fa-times,
+#result_list thead th .fa-sort-alpha-up,
+#result_list thead th .fa-sort-alpha-down,
+#result_list thead th .fa-sort-amount-up,
+#result_list thead th .fa-sort-amount-down,
+#result_list thead th [class*="fa-sort"] {
+    display: none !important;
+}
+
+/* Etiket checkbox'ları — düzenli, tema uyumlu */
+.field-tags ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.field-tags ul li {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(93,169,240,0.2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+}
+.field-tags ul li:hover {
+    border-color: #2E8BE6;
+    background: rgba(46,139,230,0.1);
+}
+.field-tags ul li label {
+    color: #cfe2f5 !important;
+    cursor: pointer;
+    margin: 0 0 0 6px !important;
+    font-weight: normal;
+}
+.field-tags ul li input[type="checkbox"] {
+    accent-color: #2E8BE6;
+    cursor: pointer;
+}
+
+/* Form içi "ekle/düzenle/sil/gör" kısayol ikonlarını gizle
+   (kategori/etiket yönetimi kendi sekmelerinden yapılsın) */
+.related-widget-wrapper-link,
+.add-related,
+.change-related,
+.delete-related,
+.view-related {
+    display: none !important;
+}
