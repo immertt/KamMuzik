@@ -6,14 +6,34 @@ from django.forms import CheckboxSelectMultiple
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["name", "slug"]
+    list_display = ["name", "sarki_sayisi", "klip_sayisi"]
     search_fields = ["name"]
+    prepopulated_fields = {"slug": ["name"]}
+    ordering = ["name"]
+
+    def sarki_sayisi(self, obj):
+        return obj.songs.count()
+    sarki_sayisi.short_description = "Şarkı Sayısı"
+
+    def klip_sayisi(self, obj):
+        return obj.videoclips.count()
+    klip_sayisi.short_description = "Klip Sayısı"
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ["name", "slug"]
+    list_display = ["name", "sarki_sayisi", "klip_sayisi"]
     search_fields = ["name"]
+    prepopulated_fields = {"slug": ["name"]}
+    ordering = ["name"]
+
+    def sarki_sayisi(self, obj):
+        return obj.songs.count()
+    sarki_sayisi.short_description = "Şarkı Sayısı"
+
+    def klip_sayisi(self, obj):
+        return obj.videoclips.count()
+    klip_sayisi.short_description = "Klip Sayısı"
 
 
 @admin.register(Song)

@@ -389,3 +389,8 @@ a:hover { color: #8FC0F0; }
 .view-related {
     display: none !important;
 }
+
+/* Harita linki alanında "Şu anda: [uzun url]" önizlemesini gizle */
+.field-map_embed_url .url a {
+    display: none !important;
+}
