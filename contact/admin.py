@@ -8,7 +8,6 @@ from django.utils.html import format_html
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ["durum", "name", "email", "subject", "created_at"]
     list_display_links = ["name"]
-    list_filter = ["is_read", "created_at"]
     search_fields = ["name", "email", "subject", "message"]
     readonly_fields = ["name", "email", "subject", "message", "created_at"]
     list_per_page = 30

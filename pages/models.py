@@ -44,10 +44,35 @@ class SiteContent(models.Model):
         null=True,
         help_text="Anasayfa üst bölümünün arka planı. Yatay, koyu tonlu bir stüdyo fotoğrafı ideal.",
     )
+
+    hero_title = models.CharField(
+        "Hero başlığı (1. satır)",
+        max_length=200,
+        default="Dünya Standartlarında",
+    )
+    hero_title_accent = models.CharField(
+        "Hero başlığı (2. satır - vurgulu)",
+        max_length=200,
+        default="Ses ve Yapım",
+    )
+    hero_subtitle = models.CharField(
+        "Hero alt açıklaması",
+        max_length=300,
+        default="Albüm & single yapımı, klip çekimi ve dijital platform yayıncılığı.",
+    )
+
     show_recent_actions = models.BooleanField(
         "Panelde 'Son Eylemler'i göster",
         default=True,
         help_text="Kapatılırsa yönetim panosunda son işlemler listesi gizlenir.",
+    )
+
+    logo = models.ImageField(
+        "Logo",
+        upload_to="logo/",
+        blank=True,
+        null=True,
+        help_text="Sitenin ve panelin her yerinde kullanılacak logo. Kare veya yatay, şeffaf arka planlı (PNG) ideal.",
     )
 
     class Meta:

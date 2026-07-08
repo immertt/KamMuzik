@@ -45,14 +45,18 @@
     <header class="navbar" id="navbar">
         <div class="container navbar__inner">
             <a href="{% url 'catalog:home' %}" class="navbar__logo">
-                <span class="navbar__logo-mark">KM</span>
-                <span class="navbar__logo-text">MÜZİK</span>
+                {% if site.logo %}
+                    <img src="{{ site.logo.url }}" alt="Kam Müzik" class="navbar__logo-img">
+                {% else %}
+                    <span class="navbar__logo-mark">KM</span>
+                    <span class="navbar__logo-text">MÜZİK</span>
+                {% endif %}
             </a>
             <nav class="navbar__nav" id="navMenu">
                 <a href="{% url 'catalog:home' %}" class="navbar__link">Ana Sayfa</a>
-                <a href="{% url 'catalog:home' %}#hakkimizda" class="navbar__link">Hakkımızda</a>
+                <a href="{% url 'catalog:about' %}" class="navbar__link">Hakkımızda</a>
                 <a href="{% url 'catalog:catalog_list' %}" class="navbar__link">Projeler</a>
-                <a href="{% url 'catalog:home' %}#studyomuz" class="navbar__link">Stüdyomuz</a>
+                <a href="{% url 'catalog:studio' %}" class="navbar__link">Stüdyomuz</a>
                 <a href="{% url 'contact:contact' %}" class="navbar__link">İletişim</a>            </nav>
             <button class="navbar__toggle" id="navToggle" aria-label="Menüyü aç/kapat">
                 <span></span><span></span><span></span>
@@ -69,7 +73,11 @@
     <footer class="footer">
         <div class="container footer__inner">
             <div class="footer__col footer__brand">
-                <span class="footer__logo">KM MÜZİK</span>
+                {% if site.logo %}
+                    <img src="{{ site.logo.url }}" alt="Kam Müzik" class="footer__logo-img">
+                {% else %}
+                    <span class="footer__logo">KM MÜZİK</span>
+                {% endif %}
                 <p class="footer__tagline">Dünyaya ses veren stüdyomuz ve müzik şirketimiz.</p>
             </div>
             <div class="footer__col">

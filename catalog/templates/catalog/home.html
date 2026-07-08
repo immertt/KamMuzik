@@ -19,11 +19,11 @@
     </div>
     <div class="hero__content">
         <h1 class="hero__title">
-            Dünya Standartlarında<br>
-            <span class="accent">Ses ve Yapım</span>
+            {{ content.hero_title }}<br>
+            <span class="accent">{{ content.hero_title_accent }}</span>
         </h1>
         <p class="hero__subtitle">
-            Albüm &amp; single yapımı, klip çekimi ve dijital platform yayıncılığı.
+            {{ content.hero_subtitle }}
         </p>
         <a href="{% url 'catalog:catalog_list' %}" class="btn btn--primary hero__cta">
             Projelerimizi Keşfet
@@ -118,7 +118,7 @@
 
         {% if studio_photos %}
         <div class="studio-grid">
-            {% for photo in studio_photos %}
+            {% for photo in studio_photos|slice:":3" %}
             <div class="studio-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:forloop.counter0 }}0">
                 <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'Stüdyo' }}"
                      class="studio-card__img lightbox-trigger" data-caption="{{ photo.caption }}">
@@ -134,6 +134,13 @@
         </p>
         {% endif %}
     </div>
+
+        {% if studio_photos %}
+        <div style="text-align:center;margin-top:40px;" data-aos="fade-up">
+            <a href="{% url 'catalog:studio' %}" class="btn btn--outline">Tüm Stüdyo Fotoğrafları</a>
+        </div>
+        {% endif %}
+
 </section>
 
 {% endblock %}

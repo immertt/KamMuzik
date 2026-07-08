@@ -1,0 +1,41 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Stüdyomuz — Kam Müzik{% endblock %}
+{% block meta_description %}{{ content.studio_text|default:"Kam Müzik stüdyosu" }}{% endblock %}
+
+{% block content %}
+
+<!-- Üst başlık şeridi -->
+<section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="container">
+        <h1 class="page-hero__title">{{ content.studio_title|default:"Stüdyomuz" }}</h1>
+        {% if content.studio_text %}
+        <p class="page-hero__subtitle">{{ content.studio_text }}</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section section--navy">
+    <div class="container">
+        {% if studio_photos %}
+        <div class="studio-grid">
+            {% for photo in studio_photos %}
+            <div class="studio-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:forloop.counter0 }}0">
+                <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'Stüdyo' }}"
+                     class="studio-card__img lightbox-trigger" data-caption="{{ photo.caption }}">
+                {% if photo.caption %}
+                <div class="studio-card__caption">{{ photo.caption }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p style="text-align:center;color:var(--text-light);">
+            Stüdyo fotoğrafları yakında eklenecek.
+        </p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

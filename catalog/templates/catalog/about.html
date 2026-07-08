@@ -1,0 +1,32 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Hakkımızda — Kam Müzik{% endblock %}
+{% block meta_description %}{{ content.about_text|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+
+<!-- Üst başlık şeridi -->
+<section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="container">
+        <h1 class="page-hero__title">Hakkımızda</h1>
+        <p class="page-hero__subtitle">Kam Müzik'i tanıyın.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container about-page">
+        <div class="about-page__inner" data-aos="fade-up">
+            <span class="section__eyebrow">Hakkımızda</span>
+            <h2 class="section__title about-page__title">{{ content.about_title }}</h2>
+            <div class="about-page__text">{{ content.about_text|linebreaksbr }}</div>
+
+            <div class="about-page__cta">
+                <a href="{% url 'catalog:catalog_list' %}" class="btn btn--primary">Projelerimizi Keşfet</a>
+                <a href="{% url 'catalog:studio' %}" class="btn btn--outline">Stüdyomuzu Görün</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

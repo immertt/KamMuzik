@@ -5,9 +5,13 @@ from django.utils.html import format_html
 
 @admin.register(SiteContent)
 class SiteContentAdmin(admin.ModelAdmin):
-    readonly_fields = ["hero_onizleme"]
+    readonly_fields = ["hero_onizleme", "logo_onizleme"]
 
     fieldsets = [
+        ("Anasayfa Hero Bölümü", {
+            "fields": ["hero_title", "hero_title_accent", "hero_subtitle"],
+            "description": "Anasayfanın en üstündeki büyük başlık ve açıklama.",
+        }),
         ("Hakkımızda Bölümü", {
             "fields": ["about_title", "about_text"]
         }),
@@ -18,7 +22,7 @@ class SiteContentAdmin(admin.ModelAdmin):
             "fields": ["contact_email", "contact_phone", "map_embed_url"]
         }),
         ("Panel Ayarları", {
-            "fields": ["hero_image", "hero_onizleme", "show_recent_actions"]
+            "fields": ["logo", "logo_onizleme", "hero_image", "hero_onizleme", "show_recent_actions"]
         }),
     ]
 
@@ -46,12 +50,21 @@ class SiteContentAdmin(admin.ModelAdmin):
         return format_html('<span style="opacity:0.5;">Henüz hero görseli yüklenmedi.</span>')
     hero_onizleme.short_description = "Mevcut Hero Görseli"
 
+    def logo_onizleme(self, obj):
+        if obj and obj.logo:
+            return format_html(
+                '<img src="{}" style="max-height:80px;border-radius:8px;'
+                'background:#0A1A2F;padding:8px;" />',
+                obj.logo.url
+            )
+        return format_html('<span style="opacity:0.5;">Henüz logo yüklenmedi.</span>')
+    logo_onizleme.short_description = "Mevcut Logo"
+
 @admin.register(StudioPhoto)
 class StudioPhotoAdmin(admin.ModelAdmin):
     list_display = ["onizleme", "caption", "order", "is_visible"]
     list_display_links = ["onizleme"]
     list_editable = ["order", "is_visible"]
-    list_filter = ["is_visible"]
     ordering = ["order", "id"]
     readonly_fields = ["form_onizleme"]
 

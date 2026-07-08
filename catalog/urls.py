@@ -8,4 +8,6 @@ urlpatterns = [
     path("katalog/", views.catalog_list, name="catalog_list"),
     path("sarki/<slug:slug>/", views.song_detail, name="song_detail"),
     path("klip/<slug:slug>/", views.clip_detail, name="clip_detail"),
+    path("hakkimizda/", views.about_page, name="about"),
+    path("studyomuz/", views.studio_page, name="studio"),
 ]

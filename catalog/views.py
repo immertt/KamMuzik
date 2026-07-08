@@ -46,3 +46,16 @@ def song_detail(request, slug):
 def clip_detail(request, slug):
     clip = get_object_or_404(VideoClip, slug=slug, is_published=True)
     return render(request, "catalog/clip_detail.html", {"clip": clip})
+
+
+def about_page(request):
+    return render(request, "catalog/about.html", {
+        "content": SiteContent.load(),
+    })
+
+
+def studio_page(request):
+    return render(request, "catalog/studio.html", {
+        "content": SiteContent.load(),
+        "studio_photos": StudioPhoto.objects.filter(is_visible=True),
+    })
