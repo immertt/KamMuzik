@@ -75,6 +75,21 @@ class SiteContent(models.Model):
         help_text="Sitenin ve panelin her yerinde kullanılacak logo. Kare veya yatay, şeffaf arka planlı (PNG) ideal.",
     )
 
+    THEME_CHOICES = [
+        ("mavi", "Mavi (Varsayılan)"),
+        ("yesil", "Yeşil"),
+        ("mor", "Mor"),
+        ("turuncu", "Turuncu"),
+    ]
+    theme = models.CharField(
+        "Site Teması",
+        max_length=20,
+        choices=THEME_CHOICES,
+        default="mavi",
+        help_text="Sitenin genel renk temasını belirler.",
+    )
+
+
     class Meta:
         verbose_name = "Site İçeriği"
         verbose_name_plural = "Site İçeriği"

@@ -24,6 +24,10 @@ class SiteContentAdmin(admin.ModelAdmin):
         ("Panel Ayarları", {
             "fields": ["logo", "logo_onizleme", "hero_image", "hero_onizleme", "show_recent_actions"]
         }),
+        ("Tema", {
+            "fields": ["theme"],
+            "description": "Sitenin renk temasını buradan seçin. Değişiklik tüm siteye uygulanır.",
+        }),
     ]
 
     def has_add_permission(self, request):

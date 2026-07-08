@@ -26,6 +26,41 @@
 
     /* Geçişler */
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+
+/* ============================================================
+TEMA PALETLERİ
+Her tema, :root'taki renk değişkenlerini kendi değerleriyle ezer.
+(Örnek renkler — arkadaşın paletleri gelince değiştirilecek)
+============================================================ */
+
+/* YEŞİL tema */
+[data-theme="yesil"] {
+    --navy-deep:   #0A1F14;
+    --navy:        #0F2A1C;
+    --blue:        #2EA96B;
+    --blue-light:  #5FD498;
+    --blue-pale:   #EAF7F0;
+}
+
+/* MOR tema */
+[data-theme="mor"] {
+    --navy-deep:   #160A2F;
+    --navy:        #241145;
+    --blue:        #8B5CF6;
+    --blue-light:  #B794F0;
+    --blue-pale:   #F1EAFB;
+}
+
+/* TURUNCU tema */
+[data-theme="turuncu"] {
+    --navy-deep:   #2F1A0A;
+    --navy:        #45270F;
+    --blue:        #E6802E;
+    --blue-light:  #F0A85D;
+    --blue-pale:   #FBF2EA;
 }
 
 /* ---------- Sıfırlama ---------- */
@@ -64,13 +99,13 @@ a { text-decoration: none; color: inherit; }
     z-index: 1000;
     display: flex;
     align-items: center;
-    background: rgba(10, 26, 47, 0.55);
+    background: color-mix(in srgb, var(--navy-deep) 55%, transparent);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(93, 169, 240, 0.12);
+    border-bottom: 1px solid color-mix(in srgb, var(--blue-light) 12%, transparent);
     transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .navbar.scrolled {
-    background: rgba(10, 26, 47, 0.92);
+    background: color-mix(in srgb, var(--navy-deep) 92%, transparent);
     box-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
 }
 .navbar__inner {
@@ -94,7 +129,7 @@ a { text-decoration: none; color: inherit; }
     background: linear-gradient(135deg, var(--blue-light), var(--blue));
     color: var(--white);
     font-size: 1rem;
-    box-shadow: 0 0 18px rgba(46, 139, 230, 0.55);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--blue) 55%, transparent);
 }
 .navbar__logo-text {
     color: var(--white);
@@ -305,7 +340,6 @@ a { text-decoration: none; color: inherit; }
 }
 .card:hover .card__img { transform: scale(1.08); filter: brightness(1.05); }
 .card:hover .card__overlay { transform: translateY(0); }
-
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -313,7 +347,7 @@ a { text-decoration: none; color: inherit; }
     background: var(--navy-deep);
     color: var(--text-light);
     padding-top: 70px;
-    border-top: 1px solid rgba(93,169,240,0.12);
+    border-top: 1px solid color-mix(in srgb, var(--blue-light) 12%, transparent);
 }
 .footer__inner {
     display: grid;
@@ -1120,7 +1154,6 @@ body {
     width: auto;
     display: block;
 }
-
 
 
 
