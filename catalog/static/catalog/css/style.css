@@ -1145,7 +1145,7 @@ body {
 
 /* Dinamik logo görselleri */
 .navbar__logo-img {
-    height: 44px;
+    height: 64px;
     width: auto;
     display: block;
 }
@@ -1156,7 +1156,16 @@ body {
 }
 
 
-
+/* Hakkımızda rozeti — logo versiyonu */
+.about__badge--logo {
+    background: linear-gradient(145deg, var(--blue-light), var(--blue));
+    overflow: hidden;
+}
+.about__badge-img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
 
 
 

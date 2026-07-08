@@ -41,10 +41,16 @@
             <a href="{% url 'catalog:catalog_list' %}" class="btn btn--primary">Çalışmalarımız</a>
         </div>
         <div class="about__visual" data-aos="fade-left">
-            <div class="about__badge">
-                <span class="about__badge-mark">KM</span>
-                <span class="about__badge-text">MÜZİK</span>
-            </div>
+            {% if site.logo %}
+                <div class="about__badge about__badge--logo">
+                    <img src="{{ site.logo.url }}" alt="Kam Müzik" class="about__badge-img">
+                </div>
+            {% else %}
+                <div class="about__badge">
+                    <span class="about__badge-mark">KM</span>
+                    <span class="about__badge-text">MÜZİK</span>
+                </div>
+            {% endif %}
         </div>
     </div>
 </section>
