@@ -77,10 +77,10 @@ class SiteContent(models.Model):
 
     THEME_CHOICES = [
         ("mavi", "Mavi (Varsayılan)"),
-        ("yesil", "Yeşil"),
-        ("mor", "Mor"),
-        ("turuncu", "Turuncu"),
+        ("karbon", "Koyu Karbon (Turkuaz-Mor)"),
+        ("gece", "Gece Mavisi (Kehribar-Turuncu)"),
     ]
+    
     theme = models.CharField(
         "Site Teması",
         max_length=20,

@@ -36,31 +36,28 @@ Her tema, :root'taki renk değişkenlerini kendi değerleriyle ezer.
 (Örnek renkler — arkadaşın paletleri gelince değiştirilecek)
 ============================================================ */
 
-/* YEŞİL tema */
-[data-theme="yesil"] {
-    --navy-deep:   #0A1F14;
-    --navy:        #0F2A1C;
-    --blue:        #2EA96B;
-    --blue-light:  #5FD498;
-    --blue-pale:   #EAF7F0;
+/* 2. TEMA — Koyu Karbon (Turkuaz + Mor) */
+[data-theme="karbon"] {
+    --navy-deep:   #12131C;
+    --navy:        #1C1E2B;
+    --blue:        #00F5D4;
+    --blue-light:  #7B2CBF;
+    --blue-pale:   #1C1E2B;
+    --white:       #F4F6FA;
+    --text-light:  #C5C9D6;
+    --text-muted:  #8A8F9E;
 }
 
-/* MOR tema */
-[data-theme="mor"] {
-    --navy-deep:   #160A2F;
-    --navy:        #241145;
-    --blue:        #8B5CF6;
-    --blue-light:  #B794F0;
-    --blue-pale:   #F1EAFB;
-}
-
-/* TURUNCU tema */
-[data-theme="turuncu"] {
-    --navy-deep:   #2F1A0A;
-    --navy:        #45270F;
-    --blue:        #E6802E;
-    --blue-light:  #F0A85D;
-    --blue-pale:   #FBF2EA;
+/* 3. TEMA — Gece Mavisi (Kehribar + Turuncu) */
+[data-theme="gece"] {
+    --navy-deep:   #0F111A;
+    --navy:        #191C2A;
+    --blue:        #FFB703;
+    --blue-light:  #FB8500;
+    --blue-pale:   #191C2A;
+    --white:       #FFFFFF;
+    --text-light:  #D5D8E0;
+    --text-muted:  #9096A5;
 }
 
 /* ---------- Sıfırlama ---------- */
