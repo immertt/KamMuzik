@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from itertools import chain
-from .models import Song, VideoClip, Category, Tag
+from .models import Song, VideoClip, Category, Tag, Artist
 from pages.models import SiteContent, StudioPhoto
 from django.core.paginator import Paginator
 
@@ -59,3 +59,22 @@ def studio_page(request):
         "content": SiteContent.load(),
         "studio_photos": StudioPhoto.objects.filter(is_visible=True),
     })
+
+def artist_list(request):
+    artists = Artist.objects.filter(is_published=True)
+    return render(request, "catalog/artist_list.html", {
+        "artists": artists,
+    })
+
+
+def artist_detail(request, slug):
+    from django.shortcuts import get_object_or_404
+    artist = get_object_or_404(Artist, slug=slug, is_published=True)
+    songs = artist.songs.filter(is_published=True)
+    clips = artist.videoclips.filter(is_published=True)
+    return render(request, "catalog/artist_detail.html", {
+        "artist": artist,
+        "songs": songs,
+        "clips": clips,
+    })
+

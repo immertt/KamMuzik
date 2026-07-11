@@ -10,4 +10,6 @@ urlpatterns = [
     path("klip/<slug:slug>/", views.clip_detail, name="clip_detail"),
     path("hakkimizda/", views.about_page, name="about"),
     path("studyomuz/", views.studio_page, name="studio"),
+    path("sanatcilar/", views.artist_list, name="artist_list"),
+    path("sanatci/<slug:slug>/", views.artist_detail, name="artist_detail"),
 ]

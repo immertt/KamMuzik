@@ -1,0 +1,82 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ artist.name }} — Kam Müzik{% endblock %}
+{% block meta_description %}{{ artist.bio|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+
+<section class="section artist-detail">
+    <div class="container">
+
+        <!-- Sanatçı üst kısmı -->
+        <div class="artist-detail__head">
+            <div class="artist-detail__photo" data-aos="fade-right">
+                {% if artist.photo %}
+                    <img src="{{ artist.photo.url }}" alt="{{ artist.name }}" class="lightbox-trigger" data-caption="{{ artist.name }}">
+                {% else %}
+                    <div class="artist-card__placeholder artist-detail__placeholder">{{ artist.name|slice:":1" }}</div>
+                {% endif %}
+            </div>
+
+            <div class="artist-detail__info" data-aos="fade-left">
+                {% if artist.role %}
+                <span class="section__eyebrow">{{ artist.role }}</span>
+                {% endif %}
+                <h1 class="artist-detail__name">{{ artist.name }}</h1>
+                {% if artist.bio %}
+                <div class="artist-detail__bio">{{ artist.bio|linebreaksbr }}</div>
+                {% endif %}
+
+                <!-- Sosyal / dinleme linkleri -->
+                <div class="artist-detail__links">
+                    {% if artist.spotify_url %}
+                    <a href="{{ artist.spotify_url }}" target="_blank" rel="noopener" class="btn btn--outline">Spotify</a>
+                    {% endif %}
+                    {% if artist.youtube_url %}
+                    <a href="{{ artist.youtube_url }}" target="_blank" rel="noopener" class="btn btn--outline">YouTube</a>
+                    {% endif %}
+                    {% if artist.instagram_url %}
+                    <a href="{{ artist.instagram_url }}" target="_blank" rel="noopener" class="btn btn--outline">Instagram</a>
+                    {% endif %}
+                    {% if artist.apple_music_url %}
+                    <a href="{{ artist.apple_music_url }}" target="_blank" rel="noopener" class="btn btn--outline">Apple Music</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Sanatçının çalışmaları -->
+        {% if songs or clips %}
+        <div class="artist-detail__works">
+            <h2 class="section__title" style="text-align:center;margin-bottom:40px;color:var(--white);">Çalışmaları</h2>
+            <div class="work-grid">
+                {% for song in songs %}
+                <a href="{{ song.get_absolute_url }}" class="work-card" data-aos="fade-up">
+                    <div class="work-card__cover">
+                        {% if song.cover_image %}<img src="{{ song.cover_image.url }}" alt="{{ song.title }}">{% endif %}
+                        <span class="work-card__type">Şarkı</span>
+                    </div>
+                    <div class="work-card__body">
+                        <h3 class="work-card__title">{{ song.title }}</h3>
+                    </div>
+                </a>
+                {% endfor %}
+                {% for clip in clips %}
+                <a href="{{ clip.get_absolute_url }}" class="work-card" data-aos="fade-up">
+                    <div class="work-card__cover">
+                        {% if clip.cover_image %}<img src="{{ clip.cover_image.url }}" alt="{{ clip.title }}">{% endif %}
+                        <span class="work-card__type">Klip</span>
+                    </div>
+                    <div class="work-card__body">
+                        <h3 class="work-card__title">{{ clip.title }}</h3>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

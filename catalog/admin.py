@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Tag, Song, VideoClip
+from .models import Category, Tag, Song, VideoClip, Artist
 from django.utils.html import format_html
 from django.db import models
 from django.forms import CheckboxSelectMultiple
@@ -58,7 +58,7 @@ class SongAdmin(admin.ModelAdmin):
             "fields": ["title", "slug", "description", "cover_image", "release_date"]
         }),
         ("Sınıflandırma", {
-            "fields": ["category", "tags", "is_published"]
+            "fields": ["artist", "category", "tags", "is_published"]
         }),
         ("Müzik Bağlantıları", {
             "fields": ["spotify_url", "apple_music_url", "youtube_url", "duration"],
@@ -123,7 +123,7 @@ class VideoClipAdmin(admin.ModelAdmin):
             "fields": ["title", "slug", "description", "cover_image", "kapak_form_onizleme", "release_date"]
         }),
         ("Sınıflandırma", {
-            "fields": ["category", "tags", "is_published"]
+            "fields": ["artist", "category", "tags", "is_published"]
         }),
         ("Klip Bilgileri", {
             "fields": ["youtube_url", "director"],
@@ -163,6 +163,55 @@ class VideoClipAdmin(admin.ModelAdmin):
     def yayindan_kaldir(self, request, queryset):
         updated = queryset.update(is_published=False)
         self.message_user(request, f"{updated} klip yayından kaldırıldı.")
+
+@admin.register(Artist)
+class ArtistAdmin(admin.ModelAdmin):
+    list_display = ["foto_onizleme", "name", "role", "is_published"]
+    list_display_links = ["name"]
+    list_editable = ["is_published"]
+    search_fields = ["name", "role", "bio"]
+    prepopulated_fields = {"slug": ["name"]}
+    list_per_page = 25
+    ordering = ["order", "name"]
+    readonly_fields = ["created_at", "updated_at", "foto_form_onizleme"]
+
+    fieldsets = [
+        ("Temel Bilgiler", {
+            "fields": ["name", "slug", "role", "photo", "foto_form_onizleme", "bio"]
+        }),
+        ("Sosyal / Dinleme Linkleri", {
+            "fields": ["spotify_url", "youtube_url", "instagram_url", "apple_music_url"],
+            "description": "Sanatçının profil linklerini tam adresleriyle yapıştırın (isteğe bağlı).",
+        }),
+        ("Yayın Ayarları", {
+            "fields": ["is_published", "order"],
+            "description": "Sıra numarası küçük olan sanatçı önce görünür.",
+        }),
+        ("Kayıt Bilgisi", {
+            "fields": ["created_at", "updated_at"],
+            "classes": ["collapse"],
+        }),
+    ]
+
+    def foto_onizleme(self, obj):
+        if obj.photo:
+            return format_html(
+                '<img src="{}" style="width:46px;height:46px;object-fit:cover;border-radius:50%;" />',
+                obj.photo.url
+            )
+        return format_html('<span style="opacity:0.4;">—</span>')
+    foto_onizleme.short_description = "Foto"
+
+    def foto_form_onizleme(self, obj):
+        if obj and obj.photo:
+            return format_html(
+                '<img src="{}" style="max-width:200px;border-radius:12px;'
+                'box-shadow:0 4px 18px rgba(0,0,0,0.4);" />',
+                obj.photo.url
+            )
+        return format_html('<span style="opacity:0.5;">Henüz fotoğraf yüklenmedi.</span>')
+    foto_form_onizleme.short_description = "Mevcut Fotoğraf"
+
 
 admin.site.site_header = "Kam Müzik Yönetim Paneli"
 admin.site.site_title = "Kam Müzik"

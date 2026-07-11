@@ -88,6 +88,14 @@ class Song(Production):
         verbose_name = "Şarkı"
         verbose_name_plural = "Şarkılar"
 
+    artist = models.ForeignKey(
+        "Artist",
+        verbose_name="Sanatçı",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="songs",
+    )
 
 class VideoClip(Production):
     youtube_url = models.URLField("YouTube linki", blank=True)
@@ -117,3 +125,50 @@ class VideoClip(Production):
     class Meta(Production.Meta):
         verbose_name = "Video Klip"
         verbose_name_plural = "Video Klipler"
+
+    artist = models.ForeignKey(
+        "Artist",
+        verbose_name="Sanatçı",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="videoclips",
+    )
+
+class Artist(models.Model):
+    name = models.CharField("Sanatçı Adı", max_length=200)
+    slug = models.SlugField("Kısa ad (URL)", max_length=220, unique=True, blank=True)
+    photo = models.ImageField("Fotoğraf", upload_to="artists/", blank=True, null=True)
+    bio = models.TextField("Biyografi / Açıklama", blank=True)
+    role = models.CharField("Rol / Tür", max_length=120, blank=True,
+                            help_text="Örn: Rap Sanatçısı, Prodüktör, Söz Yazarı")
+
+    # Sosyal / dinleme linkleri
+    spotify_url = models.URLField("Spotify", blank=True)
+    youtube_url = models.URLField("YouTube", blank=True)
+    instagram_url = models.URLField("Instagram", blank=True)
+    apple_music_url = models.URLField("Apple Music", blank=True)
+
+    is_published = models.BooleanField("Yayında mı?", default=True)
+    order = models.PositiveIntegerField("Sıra", default=0,
+                                        help_text="Küçük numara önce görünür.")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Sanatçı"
+        verbose_name_plural = "Sanatçılar"
+        ordering = ["order", "name"]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("catalog:artist_detail", kwargs={"slug": self.slug})

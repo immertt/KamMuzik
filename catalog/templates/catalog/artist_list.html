@@ -1,0 +1,47 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Sanatçılar — Kam Müzik{% endblock %}
+{% block meta_description %}Kam Müzik sanatçıları ve prodüksiyon ailesi.{% endblock %}
+
+{% block content %}
+
+<!-- Üst başlık şeridi -->
+<section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="container">
+        <h1 class="page-hero__title">Sanatçılar</h1>
+        <p class="page-hero__subtitle">Kam Müzik ailesi.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if artists %}
+        <div class="artist-grid">
+            {% for artist in artists %}
+            <a href="{{ artist.get_absolute_url }}" class="artist-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:forloop.counter0 }}0">
+                <div class="artist-card__photo">
+                    {% if artist.photo %}
+                        <img src="{{ artist.photo.url }}" alt="{{ artist.name }}">
+                    {% else %}
+                        <div class="artist-card__placeholder">{{ artist.name|slice:":1" }}</div>
+                    {% endif %}
+                </div>
+                <div class="artist-card__info">
+                    <h3 class="artist-card__name">{{ artist.name }}</h3>
+                    {% if artist.role %}
+                    <span class="artist-card__role">{{ artist.role }}</span>
+                    {% endif %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p style="text-align:center;color:var(--text-light);">
+            Sanatçılar yakında eklenecek.
+        </p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
